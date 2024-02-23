@@ -9,7 +9,25 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+            <a href="/Home/Index" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <img src="~/images/blood-donation.png" alt="Logo" width="32" height="32" class="rounded-circle">
+                <span class="fs-8">Blood Unity Center</span>
+            </a>
+
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="/Home/Index" class="nav-link active" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="/Home/About" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="/Home/Contact" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </header>
+        
+    </div>
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -28,7 +46,7 @@
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
-    </div>
+    </div>*@
     <div class="container body-content">
         @RenderBody()
         <hr />
