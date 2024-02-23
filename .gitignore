@@ -1,0 +1,12 @@
+.vs/
+BloodBank.Management.DataAccess/bin/
+BloodBank.Management.DataAccess/obj/
+BloodBank.Management.Models/bin/
+BloodBank.Management.Models/obj/
+BloodBank.Management.Services/bin/
+BloodBank.Management.Services/obj/
+BloodBank.Management.Web.Tests/bin/
+BloodBank.Management.Web.Tests/obj/
+BloodBank.Management.Web/bin/
+BloodBank.Management.Web/obj/
+packages/
