@@ -6,7 +6,5 @@ using System.Threading.Tasks;
 
 namespace BloodBank.Management.Services
 {
-    public class Class1
-    {
-    }
+
 }
