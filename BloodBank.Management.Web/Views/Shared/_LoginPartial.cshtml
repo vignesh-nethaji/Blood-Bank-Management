@@ -8,7 +8,6 @@
         <ul class="nav nav-pills">
 
             <li class="nav-item">
-                <a href="/" class="nav-link" aria-current="page">Home</a>
                 @Html.ActionLink("Hello " + User.Identity.GetUserName().Split('@')[0] + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
             </li>
             <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()"  class="nav-link">Log off</a></li>

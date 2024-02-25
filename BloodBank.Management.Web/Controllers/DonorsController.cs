@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -35,6 +36,12 @@ namespace BloodBank.Management.Web.Controllers
         // GET: Donors/Create
         public ActionResult Create()
         {
+            List<SelectListItem> bloodGroups = new List<SelectListItem>();
+            foreach (var item in db.BloodGroup.ToList())
+            {
+                bloodGroups.Add(new SelectListItem() { Text = item.Name, Value = item.Id.ToString() });
+            }
+            ViewBag.BloodGroups = db.BloodGroup.ToList();
             return View();
         }
 

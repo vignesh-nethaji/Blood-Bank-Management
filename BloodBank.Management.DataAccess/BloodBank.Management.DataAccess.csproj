@@ -74,6 +74,14 @@
     <Compile Include="Migrations\202402241811227_Added-Database-Dbset.Designer.cs">
       <DependentUpon>202402241811227_Added-Database-Dbset.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202402251911272_Updated-Donot-model2.cs" />
+    <Compile Include="Migrations\202402251911272_Updated-Donot-model2.Designer.cs">
+      <DependentUpon>202402251911272_Updated-Donot-model2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402251914282_Updated-Donot-model3.cs" />
+    <Compile Include="Migrations\202402251914282_Updated-Donot-model3.Designer.cs">
+      <DependentUpon>202402251914282_Updated-Donot-model3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -102,6 +110,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202402241811227_Added-Database-Dbset.resx">
       <DependentUpon>202402241811227_Added-Database-Dbset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402251911272_Updated-Donot-model2.resx">
+      <DependentUpon>202402251911272_Updated-Donot-model2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402251914282_Updated-Donot-model3.resx">
+      <DependentUpon>202402251914282_Updated-Donot-model3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
