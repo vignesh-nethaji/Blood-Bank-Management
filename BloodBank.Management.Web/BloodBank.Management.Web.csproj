@@ -169,8 +169,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BloodGroupsController.cs" />
+    <Compile Include="Controllers\DonationsController.cs" />
+    <Compile Include="Controllers\DonorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HospitalsController.cs" />
+    <Compile Include="Controllers\InventoriesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RecipientsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -283,6 +288,31 @@
     <Content Include="Views\BloodGroups\Details.cshtml" />
     <Content Include="Views\BloodGroups\Edit.cshtml" />
     <Content Include="Views\BloodGroups\Index.cshtml" />
+    <Content Include="Views\Donors\Create.cshtml" />
+    <Content Include="Views\Donors\Delete.cshtml" />
+    <Content Include="Views\Donors\Details.cshtml" />
+    <Content Include="Views\Donors\Edit.cshtml" />
+    <Content Include="Views\Donors\Index.cshtml" />
+    <Content Include="Views\Recipients\Create.cshtml" />
+    <Content Include="Views\Recipients\Delete.cshtml" />
+    <Content Include="Views\Recipients\Details.cshtml" />
+    <Content Include="Views\Recipients\Edit.cshtml" />
+    <Content Include="Views\Recipients\Index.cshtml" />
+    <Content Include="Views\Donations\Create.cshtml" />
+    <Content Include="Views\Donations\Delete.cshtml" />
+    <Content Include="Views\Donations\Details.cshtml" />
+    <Content Include="Views\Donations\Edit.cshtml" />
+    <Content Include="Views\Donations\Index.cshtml" />
+    <Content Include="Views\Inventories\Create.cshtml" />
+    <Content Include="Views\Inventories\Delete.cshtml" />
+    <Content Include="Views\Inventories\Details.cshtml" />
+    <Content Include="Views\Inventories\Edit.cshtml" />
+    <Content Include="Views\Inventories\Index.cshtml" />
+    <Content Include="Views\Hospitals\Create.cshtml" />
+    <Content Include="Views\Hospitals\Delete.cshtml" />
+    <Content Include="Views\Hospitals\Details.cshtml" />
+    <Content Include="Views\Hospitals\Edit.cshtml" />
+    <Content Include="Views\Hospitals\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
