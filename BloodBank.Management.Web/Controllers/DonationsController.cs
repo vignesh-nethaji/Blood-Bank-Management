@@ -7,107 +7,107 @@ using BloodBank.Management.Models.Entity;
 
 namespace BloodBank.Management.Web.Controllers
 {
-    public class BloodGroupsController : Controller
+    public class DonationsController : Controller
     {
         private BloodCenterContext db = new BloodCenterContext();
 
-        // GET: BloodGroups
+        // GET: Donations
         public ActionResult Index()
         {
-            return View(db.BloodGroup.ToList());
+            return View(db.Donation.ToList());
         }
 
-        // GET: BloodGroups/Details/5
+        // GET: Donations/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BloodGroup bloodGroup = db.BloodGroup.Find(id);
-            if (bloodGroup == null)
+            Donation donation = db.Donation.Find(id);
+            if (donation == null)
             {
                 return HttpNotFound();
             }
-            return View(bloodGroup);
+            return View(donation);
         }
 
-        // GET: BloodGroups/Create
+        // GET: Donations/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: BloodGroups/Create
+        // POST: Donations/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description")] BloodGroup bloodGroup)
+        public ActionResult Create([Bind(Include = "Id,DonorId,RecipientId,DonationDate,Quantity")] Donation donation)
         {
             if (ModelState.IsValid)
             {
-                db.BloodGroup.Add(bloodGroup);
+                db.Donation.Add(donation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(bloodGroup);
+            return View(donation);
         }
 
-        // GET: BloodGroups/Edit/5
+        // GET: Donations/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BloodGroup bloodGroup = db.BloodGroup.Find(id);
-            if (bloodGroup == null)
+            Donation donation = db.Donation.Find(id);
+            if (donation == null)
             {
                 return HttpNotFound();
             }
-            return View(bloodGroup);
+            return View(donation);
         }
 
-        // POST: BloodGroups/Edit/5
+        // POST: Donations/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description")] BloodGroup bloodGroup)
+        public ActionResult Edit([Bind(Include = "Id,DonorId,RecipientId,DonationDate,Quantity")] Donation donation)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(bloodGroup).State = EntityState.Modified;
+                db.Entry(donation).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(bloodGroup);
+            return View(donation);
         }
 
-        // GET: BloodGroups/Delete/5
+        // GET: Donations/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BloodGroup bloodGroup = db.BloodGroup.Find(id);
-            if (bloodGroup == null)
+            Donation donation = db.Donation.Find(id);
+            if (donation == null)
             {
                 return HttpNotFound();
             }
-            return View(bloodGroup);
+            return View(donation);
         }
 
-        // POST: BloodGroups/Delete/5
+        // POST: Donations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BloodGroup bloodGroup = db.BloodGroup.Find(id);
-            db.BloodGroup.Remove(bloodGroup);
+            Donation donation = db.Donation.Find(id);
+            db.Donation.Remove(donation);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
