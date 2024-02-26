@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BloodBank.Management.Models.Entity.Recipient>
+﻿@model IEnumerable<BloodBank.Management.Models.ViewModel.RecipientList>
 
 @{
     ViewBag.Title = "Index";
@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.BloodGroupId)
+            @Html.DisplayNameFor(model => model.BloodGroup)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HospitalId)
+            @Html.DisplayNameFor(model => model.Hospital)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -35,10 +35,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.BloodGroupId)
+            @Html.DisplayFor(modelItem => item.BloodGroup)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.HospitalId)
+            @Html.DisplayFor(modelItem => item.Hospital)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)

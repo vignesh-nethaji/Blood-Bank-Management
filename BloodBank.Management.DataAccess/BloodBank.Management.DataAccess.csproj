@@ -82,6 +82,26 @@
     <Compile Include="Migrations\202402251914282_Updated-Donot-model3.Designer.cs">
       <DependentUpon>202402251914282_Updated-Donot-model3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202402251941579_Updated-Donot-model4.cs" />
+    <Compile Include="Migrations\202402251941579_Updated-Donot-model4.Designer.cs">
+      <DependentUpon>202402251941579_Updated-Donot-model4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402251944488_Updated-Donot-model5.cs" />
+    <Compile Include="Migrations\202402251944488_Updated-Donot-model5.Designer.cs">
+      <DependentUpon>202402251944488_Updated-Donot-model5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402261810431_Updated-Hospital.cs" />
+    <Compile Include="Migrations\202402261810431_Updated-Hospital.Designer.cs">
+      <DependentUpon>202402261810431_Updated-Hospital.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402261839168_Updated-Recipient.cs" />
+    <Compile Include="Migrations\202402261839168_Updated-Recipient.Designer.cs">
+      <DependentUpon>202402261839168_Updated-Recipient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402261904185_Updated-Recipient2.cs" />
+    <Compile Include="Migrations\202402261904185_Updated-Recipient2.Designer.cs">
+      <DependentUpon>202402261904185_Updated-Recipient2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -116,6 +136,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202402251914282_Updated-Donot-model3.resx">
       <DependentUpon>202402251914282_Updated-Donot-model3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402251941579_Updated-Donot-model4.resx">
+      <DependentUpon>202402251941579_Updated-Donot-model4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402251944488_Updated-Donot-model5.resx">
+      <DependentUpon>202402251944488_Updated-Donot-model5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402261810431_Updated-Hospital.resx">
+      <DependentUpon>202402261810431_Updated-Hospital.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402261839168_Updated-Recipient.resx">
+      <DependentUpon>202402261839168_Updated-Recipient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402261904185_Updated-Recipient2.resx">
+      <DependentUpon>202402261904185_Updated-Recipient2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -53,6 +53,8 @@
     <Compile Include="Entity\Recipient.cs" />
     <Compile Include="Entity\Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\DonarList.cs" />
+    <Compile Include="ViewModel\RecipientList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
