@@ -1,4 +1,4 @@
-﻿@model BloodBank.Management.Models.Entity.Inventory
+﻿@model BloodBank.Management.Models.ViewModel.InventoryList
 
 @{
     ViewBag.Title = "Delete";
@@ -12,19 +12,19 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.DonorId)
+            @Html.DisplayNameFor(model => model.Donor)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DonorId)
+            @Html.DisplayFor(model => model.Donor)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BloodGroupId)
+            @Html.DisplayNameFor(model => model.BloodGroup)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BloodGroupId)
+            @Html.DisplayFor(model => model.BloodGroup)
         </dd>
 
         <dt>
@@ -40,7 +40,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Status)
+            @if (Model.Status)
+            {
+                <span class="badge badge-pill badge-danger" style="background-color:black;">Not Available</span>
+            }
+            else
+            {
+                <span class="badge badge-pill badge-success" style="background-color:black;">Available</span>
+            }
         </dd>
 
     </dl>
