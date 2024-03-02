@@ -1,9 +1,11 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using BloodBank.Management.DataAccess;
 using BloodBank.Management.Models.Entity;
+using BloodBank.Management.Models.ViewModel;
 
 namespace BloodBank.Management.Web.Controllers
 {
@@ -14,7 +16,33 @@ namespace BloodBank.Management.Web.Controllers
         // GET: Inventories
         public ActionResult Index()
         {
-            return View(db.Inventory.ToList());
+            List<InventoryList> inventoryList = new List<InventoryList>();
+
+            var bloodGroups = db.BloodGroup.ToList();
+            var donors = db.Donor.ToList();
+            var recipients = db.Recipient.ToList();
+            var donations = db.Donation.ToList();
+
+            foreach (var item in db.Inventory.ToList())
+            {
+                var inventory = new InventoryList()
+                {
+                    Id = item.Id,
+                    Donor = donors.FirstOrDefault(o => o.Id == item.DonorId).Name,
+                    BloodGroup = bloodGroups.FirstOrDefault(o => o.Id == item.BloodGroupId).Name,
+                    DonationId = item.DonationId,
+                    ExpiryDate = item.ExpiryDate,
+                    Status = item.Status
+                };
+                if (item.DonationId > 0)
+                {
+                    var recipientId = donations.FirstOrDefault(o => o.Id == item.DonationId).RecipientId;
+                    var recipientName = recipients.FirstOrDefault(o => o.Id == recipientId).Name;
+                    inventory.Recipient = recipientName;
+                }
+                inventoryList.Add(inventory);
+            }
+            return View(inventoryList);
         }
 
         // GET: Inventories/Details/5
@@ -29,12 +57,31 @@ namespace BloodBank.Management.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(inventory);
+            var recipients = db.Recipient.ToList();
+            var donations = db.Donation.ToList();
+            var inventoryData = new InventoryList()
+            {
+                Id = inventory.Id,
+                Donor = db.Donor.FirstOrDefault(o => o.Id == inventory.DonorId).Name,
+                BloodGroup = db.BloodGroup.FirstOrDefault(o => o.Id == inventory.BloodGroupId).Name,
+                DonationId = inventory.DonationId,
+                ExpiryDate = inventory.ExpiryDate,
+                Status = inventory.Status
+            };
+            if (inventory.DonationId > 0)
+            {
+                var recipientId = donations.FirstOrDefault(o => o.Id == inventory.DonationId).RecipientId;
+                var recipientName = recipients.FirstOrDefault(o => o.Id == recipientId).Name;
+                inventoryData.Recipient = recipientName;
+            }
+            return View(inventoryData);
         }
 
         // GET: Inventories/Create
         public ActionResult Create()
         {
+            ViewBag.BloodGroups = db.BloodGroup.ToList();
+            ViewBag.Donors = db.Donor.ToList();
             return View();
         }
 
@@ -45,6 +92,7 @@ namespace BloodBank.Management.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,DonorId,BloodGroupId,ExpiryDate,Status")] Inventory inventory)
         {
+            inventory.BloodGroupId = db.Donor.FirstOrDefault(o => o.Id == inventory.DonorId).BloodGroupId;
             if (ModelState.IsValid)
             {
                 db.Inventory.Add(inventory);
@@ -67,6 +115,8 @@ namespace BloodBank.Management.Web.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.BloodGroups = db.BloodGroup.ToList();
+            ViewBag.Donors = db.Donor.ToList();
             return View(inventory);
         }
 
@@ -77,6 +127,7 @@ namespace BloodBank.Management.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,DonorId,BloodGroupId,ExpiryDate,Status")] Inventory inventory)
         {
+            inventory.BloodGroupId = db.Donor.FirstOrDefault(o => o.Id == inventory.DonorId).BloodGroupId;
             if (ModelState.IsValid)
             {
                 db.Entry(inventory).State = EntityState.Modified;
@@ -98,7 +149,24 @@ namespace BloodBank.Management.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(inventory);
+            var recipients = db.Recipient.ToList();
+            var donations = db.Donation.ToList();
+            var inventoryData = new InventoryList()
+            {
+                Id = inventory.Id,
+                Donor = db.Donor.FirstOrDefault(o => o.Id == inventory.DonorId).Name,
+                BloodGroup = db.BloodGroup.FirstOrDefault(o => o.Id == inventory.BloodGroupId).Name,
+                DonationId = inventory.DonationId,
+                ExpiryDate = inventory.ExpiryDate,
+                Status = inventory.Status
+            };
+            if (inventory.DonationId > 0)
+            {
+                var recipientId = donations.FirstOrDefault(o => o.Id == inventory.DonationId).RecipientId;
+                var recipientName = recipients.FirstOrDefault(o => o.Id == recipientId).Name;
+                inventoryData.Recipient = recipientName;
+            }
+            return View(inventoryData);
         }
 
         // POST: Inventories/Delete/5
@@ -110,6 +178,13 @@ namespace BloodBank.Management.Web.Controllers
             db.Inventory.Remove(inventory);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public JsonResult GetBloodGroupId(int donorId = 0)
+        {
+            var bloodGroupId = db.Donor.FirstOrDefault(o => o.Id == donorId).BloodGroupId;
+            return Json(bloodGroupId, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

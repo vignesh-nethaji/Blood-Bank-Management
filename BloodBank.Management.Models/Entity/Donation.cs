@@ -13,16 +13,17 @@ namespace BloodBank.Management.Models.Entity
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        //[ForeignKey("Donor")]
-        //[Required]
+        [Required]
+        [Display(Name = "Donor")]
         public int DonorId { get; set; }
-        //[ForeignKey("Recipient")]
-        //[Required]
+        [Required]
+        [Display(Name = "Recipient")]
         public int RecipientId { get; set; }
+        [Required]
+        [Display(Name = "Donation Date")]
         public DateTime DonationDate { get; set; }
+        [Required]
+        [Display(Name = "Quantity")]
         public int Quantity { get; set; }
-
-        //public Donor Donor { get; set; }
-        //public Recipient Recipient { get; set; }
     }
 }

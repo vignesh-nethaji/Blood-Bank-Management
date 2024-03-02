@@ -9,16 +9,18 @@ namespace BloodBank.Management.Models.Entity
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        //[ForeignKey("Donor")]
+        [Required]
+        [Display(Name = "Donor")]
         public int DonorId { get; set; }
-        //[ForeignKey("BloodGroup")]
-        //[Required]
+        [Required]
+        [Display(Name = "Blood Group")]
         public int BloodGroupId { get; set; }
+        public int DonationId { get; set; }
+        [Display(Name = "Expiry Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Required]
         public DateTime ExpiryDate { get; set; }
         public bool Status { get; set; }
-
-        //public Donor Donor { get; set; }
-        //public BloodGroup BloodGroup { get; set; }
-
     }
 }

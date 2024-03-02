@@ -1,4 +1,4 @@
-﻿@model BloodBank.Management.Models.Entity.Donor
+﻿@model BloodBank.Management.Models.ViewModel.DonarList
 
 @{
     ViewBag.Title = "Delete";
@@ -10,11 +10,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.BloodGroupId)
+            @Html.DisplayNameFor(model => model.BloodGroup)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BloodGroupId)
+            @Html.DisplayFor(model => model.BloodGroup)
         </dd>
 
         <dt>

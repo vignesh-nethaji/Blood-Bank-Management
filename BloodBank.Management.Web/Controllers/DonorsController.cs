@@ -1,9 +1,11 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using BloodBank.Management.DataAccess;
 using BloodBank.Management.Models.Entity;
+using BloodBank.Management.Models.ViewModel;
 
 namespace BloodBank.Management.Web.Controllers
 {
@@ -14,7 +16,24 @@ namespace BloodBank.Management.Web.Controllers
         // GET: Donors
         public ActionResult Index()
         {
-            return View(db.Donor.ToList());
+            List<DonarList> donarLists = new List<DonarList>();
+
+            var bloodGroups = db.BloodGroup.ToList();
+
+            foreach (var item in db.Donor.ToList())
+            {
+                donarLists.Add(new DonarList()
+                {
+                    Name = item.Name,
+                    Address = item.Address,
+                    BloodGroup = bloodGroups.FirstOrDefault(o => o.Id == item.BloodGroupId).Name,
+                    Email = item.Email,
+                    Id = item.Id,
+                    LastDonationDate = item.LastDonationDate,
+                    Mobile= item.Mobile
+                });
+            }
+            return View(donarLists);
         }
 
         // GET: Donors/Details/5
@@ -29,12 +48,23 @@ namespace BloodBank.Management.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(donor);
+            var donarData = new DonarList()
+            {
+                Name = donor.Name,
+                Address = donor.Address,
+                BloodGroup = db.BloodGroup.FirstOrDefault(o => o.Id == donor.BloodGroupId).Name,
+                Email = donor.Email,
+                Id = donor.Id,
+                LastDonationDate = donor.LastDonationDate,
+                Mobile = donor.Mobile
+            };
+            return View(donarData);
         }
 
         // GET: Donors/Create
         public ActionResult Create()
         {
+            ViewBag.BloodGroups = db.BloodGroup.ToList();
             return View();
         }
 
@@ -67,6 +97,7 @@ namespace BloodBank.Management.Web.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.BloodGroups = db.BloodGroup.ToList();
             return View(donor);
         }
 
@@ -98,7 +129,17 @@ namespace BloodBank.Management.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(donor);
+            var donarData = new DonarList()
+            {
+                Name = donor.Name,
+                Address = donor.Address,
+                BloodGroup = db.BloodGroup.FirstOrDefault(o => o.Id == donor.BloodGroupId).Name,
+                Email = donor.Email,
+                Id = donor.Id,
+                LastDonationDate = donor.LastDonationDate,
+                Mobile = donor.Mobile
+            };
+            return View(donarData);
         }
 
         // POST: Donors/Delete/5

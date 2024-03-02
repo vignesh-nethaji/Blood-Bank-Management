@@ -11,19 +11,27 @@ namespace BloodBank.Management.Models.Entity
     /// <summary>
     /// 
     /// </summary>
-   public  class Donor
+    public class Donor
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         //[ForeignKey("BloodGroup")]
-        //[Required]
+        [Required]
+        [Display(Name = "Blood Group")]
         public int BloodGroupId { get; set; }
-        public string  Name { get; set; }
+        [Required]
+        public string Name { get; set; }
+        [Required]
         public string Mobile { get; set; }
         public string Email { get; set; }
-        public string  Address { get; set; }
-        public DateTime LastDonationDate  { get; set; }
+        [Required]
+        public string Address { get; set; }
+        [Display(Name = "Last Donation")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Required]
+        public DateTime LastDonationDate { get; set; }
 
         //public BloodGroup BloodGroup { get; set; }
         //public ICollection<Donation> Donations { get; set; }

@@ -20,7 +20,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DonorId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DonorId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.DonorId, new SelectList(ViewBag.Donors, "Id", "Name", Model?.DonorId == null ? 0 : Model.DonorId), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DonorId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.BloodGroupId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BloodGroupId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.BloodGroupId, new SelectList(ViewBag.BloodGroups, "Id", "Name", Model?.BloodGroupId == null ? 0 : Model.BloodGroupId), new { @class = "form-control", disabled = "disabled" })
                 @Html.ValidationMessageFor(model => model.BloodGroupId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -45,8 +45,17 @@
             @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.Status)
-                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    @*@Html.EditorFor(model => model.Status)*@
+                    @*@Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })*@
+                    @if (Model.Status)
+                    {
+                        <span class="badge badge-pill badge-danger" style="background-color:black;">Not Available</span>
+
+                    }
+                    else
+                    {
+                        <span class="badge badge-pill badge-success" style="background-color:black;">Available</span>
+                    }
                 </div>
             </div>
         </div>
@@ -64,5 +73,5 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryval", "~/bundles/inventory")
 }

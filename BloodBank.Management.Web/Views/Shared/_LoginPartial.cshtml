@@ -6,15 +6,20 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav nav-pills">
-
+            <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
+            <li class="nav-item"><a href="/BloodGroups" class="nav-link active" aria-current="page">Blood Group</a></li>
+            <li class="nav-item"><a href="/Donors" class="nav-link">Donor</a></li>
+            <li class="nav-item"><a href="/Recipients" class="nav-link">Recipients</a></li>
+            <li class="nav-item"><a href="/Donations" class="nav-link">Donation</a></li>
+            <li class="nav-item"><a href="/Inventories" class="nav-link">Inventory</a></li>
+            <li class="nav-item"><a href="/Hospitals" class="nav-link">Hospital</a></li>
             <li class="nav-item">
-                <a href="/" class="nav-link" aria-current="page">Home</a>
                 @Html.ActionLink("Hello " + User.Identity.GetUserName().Split('@')[0] + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
             </li>
-            <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()"  class="nav-link">Log off</a></li>
-            
+            <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Log off</a></li>
+
         </ul>
-       
+
     }
 }
 else
@@ -23,14 +28,4 @@ else
         <li class="nav-item">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</li>
         <li class="nav-item">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
     </ul>
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user"></i> <!-- User icon -->
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Profile</a>
-            <a class="dropdown-item" href="#">Settings</a>
-            <a class="dropdown-item" href="#">Logout</a>
-        </div>
-    </div>
 }

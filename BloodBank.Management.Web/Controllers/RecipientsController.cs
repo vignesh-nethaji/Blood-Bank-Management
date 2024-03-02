@@ -1,20 +1,40 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using BloodBank.Management.DataAccess;
 using BloodBank.Management.Models.Entity;
+using BloodBank.Management.Models.ViewModel;
 
 namespace BloodBank.Management.Web.Controllers
 {
     public class RecipientsController : Controller
     {
-        private BloodCenterContext db = new BloodCenterContext();
+        private readonly BloodCenterContext db = new BloodCenterContext();
 
         // GET: Recipients
         public ActionResult Index()
         {
-            return View(db.Recipient.ToList());
+            List<RecipientList> recipientList = new List<RecipientList>();
+
+            var bloodGroups = db.BloodGroup.ToList();
+            var hospitals = db.Hospital.ToList();
+
+            foreach (var item in db.Recipient.ToList())
+            {
+                recipientList.Add(new RecipientList()
+                {
+                    Name = item.Name,
+                    Address = item.Address,
+                    Hospital = hospitals.FirstOrDefault(o => o.Id == item.HospitalId).Name,
+                    BloodGroup = bloodGroups.FirstOrDefault(o => o.Id == item.BloodGroupId).Name,
+                    Email = item.Email,
+                    Id = item.Id,
+                    Mobile = item.Mobile
+                });
+            }
+            return View(recipientList);
         }
 
         // GET: Recipients/Details/5
@@ -29,12 +49,24 @@ namespace BloodBank.Management.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(recipient);
+            var recipientData = new RecipientList()
+            {
+                Name = recipient.Name,
+                Address = recipient.Address,
+                Hospital = db.Hospital.FirstOrDefault(o => o.Id == recipient.HospitalId).Name,
+                BloodGroup = db.BloodGroup.FirstOrDefault(o => o.Id == recipient.BloodGroupId).Name,
+                Email = recipient.Email,
+                Id = recipient.Id,
+                Mobile = recipient.Mobile
+            };
+            return View(recipientData);
         }
 
         // GET: Recipients/Create
         public ActionResult Create()
         {
+            ViewBag.BloodGroups = db.BloodGroup.ToList();
+            ViewBag.Hospitals = db.Hospital.ToList();
             return View();
         }
 
@@ -67,6 +99,8 @@ namespace BloodBank.Management.Web.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.BloodGroups = db.BloodGroup.ToList();
+            ViewBag.Hospitals = db.Hospital.ToList();
             return View(recipient);
         }
 
@@ -98,7 +132,17 @@ namespace BloodBank.Management.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(recipient);
+            var recipientData = new RecipientList()
+            {
+                Name = recipient.Name,
+                Address = recipient.Address,
+                Hospital = db.Hospital.FirstOrDefault(o => o.Id == recipient.HospitalId).Name,
+                BloodGroup = db.BloodGroup.FirstOrDefault(o => o.Id == recipient.BloodGroupId).Name,
+                Email = recipient.Email,
+                Id = recipient.Id,
+                Mobile = recipient.Mobile
+            };
+            return View(recipientData);
         }
 
         // POST: Recipients/Delete/5

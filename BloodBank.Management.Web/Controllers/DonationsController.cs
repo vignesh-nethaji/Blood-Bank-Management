@@ -1,9 +1,11 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using BloodBank.Management.DataAccess;
 using BloodBank.Management.Models.Entity;
+using BloodBank.Management.Models.ViewModel;
 
 namespace BloodBank.Management.Web.Controllers
 {
@@ -14,7 +16,27 @@ namespace BloodBank.Management.Web.Controllers
         // GET: Donations
         public ActionResult Index()
         {
-            return View(db.Donation.ToList());
+            List<DonationList> donationList = new List<DonationList>();
+            var bloodGroups = db.BloodGroup.ToList();
+            var donors = db.Donor.ToList();
+            var recipients = db.Recipient.ToList();
+            var donations = db.Donation.ToList();
+
+            foreach (var item in donations)
+            {
+                var donor = donors.FirstOrDefault(o => o.Id == item.DonorId);
+                var donation = new DonationList()
+                {
+                    Id = item.Id,
+                    DonationDate = item.DonationDate,
+                    Donor = donor.Name,
+                    BloodGroup = bloodGroups.FirstOrDefault(o => o.Id == donor.BloodGroupId).Name,
+                    Quantity = item.Quantity,
+                    Recipient = recipients.FirstOrDefault(o => o.Id == item.RecipientId).Name
+                };
+                donationList.Add(donation);
+            }
+            return View(donationList);
         }
 
         // GET: Donations/Details/5
@@ -29,12 +51,26 @@ namespace BloodBank.Management.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(donation);
+
+            var donor = db.Donor.FirstOrDefault(o => o.Id == donation.DonorId);
+            var donationData = new DonationList()
+            {
+                Id = donation.Id,
+                DonationDate = donation.DonationDate,
+                Donor = donor.Name,
+                BloodGroup = db.BloodGroup.FirstOrDefault(o => o.Id == donor.BloodGroupId).Name,
+                Quantity = donation.Quantity,
+                Recipient = db.Recipient.FirstOrDefault(o => o.Id == donation.RecipientId).Name
+            };
+
+            return View(donationData);
         }
 
         // GET: Donations/Create
         public ActionResult Create()
         {
+            ViewBag.Donors = db.Donor.ToList();
+            ViewBag.Recipients = db.Recipient.ToList();
             return View();
         }
 
@@ -67,6 +103,8 @@ namespace BloodBank.Management.Web.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Donors = db.Donor.ToList();
+            ViewBag.Recipients = db.Recipient.ToList();
             return View(donation);
         }
 
@@ -98,7 +136,18 @@ namespace BloodBank.Management.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(donation);
+            var donor = db.Donor.FirstOrDefault(o => o.Id == donation.DonorId);
+            var donationData = new DonationList()
+            {
+                Id = donation.Id,
+                DonationDate = donation.DonationDate,
+                Donor = donor.Name,
+                BloodGroup = db.BloodGroup.FirstOrDefault(o => o.Id == donor.BloodGroupId).Name,
+                Quantity = donation.Quantity,
+                Recipient = db.Recipient.FirstOrDefault(o => o.Id == donation.RecipientId).Name
+            };
+
+            return View(donationData);
         }
 
         // POST: Donations/Delete/5
