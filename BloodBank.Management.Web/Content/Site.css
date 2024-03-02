@@ -1,6 +1,6 @@
 ﻿body {
-    background: whitesmoke!important;
-    font-size:13px;
+    background: whitesmoke !important;
+    font-size: 13px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -23,25 +23,30 @@ textarea {
     max-width: 280px;
 }*/
 
-.login-container{
-    height:100vh;
+.login-container {
+    height: 100vh;
 }
+
 .login-img-bg {
     background: #fff;
 }
-.login-img{
-    margin-top:130px;
-    border-radius:0px;
+
+.login-img {
+    margin-top: 130px;
+    border-radius: 0px;
 }
+
 .login-card {
     background-color: #fff;
     padding: 30px;
     margin: 14% 13% 0% 13%;
     border-radius: 10px;
 }
-.app-logo{
-    font-size:25px;
+
+.app-logo {
+    font-size: 25px;
 }
+
 .login-btn {
     background: #dc3545;
     width: 100%;
@@ -51,6 +56,7 @@ textarea {
     font-weight: 500;
     border: 2px solid #dc3545;
 }
+
     .login-btn:hover {
         background: #ffffff;
         color: #dc3545;
@@ -58,9 +64,11 @@ textarea {
         border: 2px solid #dc3545;
         box-shadow: 2px 4px 6px #f2c2c2;
     }
-.text-right{
-    text-align:right
+
+.text-right {
+    text-align: right
 }
+
 .create-account-text a {
     text-decoration: none;
     color: #000;
@@ -80,37 +88,44 @@ textarea {
 }
 */
 
-.app-content{
+.app-content {
     padding: 20px 20px 20px 230px;
 }
+
 .blood-unity-box-card {
     background-color: #fff;
     box-shadow: 5px 1px 5px #80808024;
 }
+
 .blood-unity-box-card-header {
     background: #f7baba30;
     padding: 10px;
     border-left: 3px solid #ea868f;
 }
-.blood-unity-box-card-header  a {
-    color: #000;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 700;
-}
+
+    .blood-unity-box-card-header a {
+        color: #000;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
 .blood-unity-box-card-header-icon {
     width: 26px;
     float: left;
     padding-top: 2px;
 }
+
 .blood-unity-box-card-content {
     padding: 15px;
 }
+
 .root-description {
     padding-bottom: 10px;
     color: #000;
     font-weight: 500;
 }
+
     .root-description span {
         margin-right: 2px;
         margin-left: 2px;
@@ -119,15 +134,15 @@ textarea {
 
 
 
-    /* ============================== aside menu code start Here ========================  */
-    a {
+/* ============================== aside menu code start Here ========================  */
+a {
     transition: background 0.2s, color 0.2s;
 }
 
-a:hover,
-a:focus {
-    text-decoration: none;
-}
+    a:hover,
+    a:focus {
+        text-decoration: none;
+    }
 
 #wrapper {
     padding-left: 0;
@@ -242,6 +257,7 @@ a:focus {
     color: #dc3545;
     background: #cbcbcb;
 }
+
 @media (min-width: 992px) {
     #wrapper {
         padding-left: 210px;
@@ -280,7 +296,6 @@ a:focus {
         position: relative;
         top: 0;
     }
-
 }
 
 @media (max-width: 767px) {
