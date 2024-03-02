@@ -70,10 +70,17 @@
                             @Html.DisplayFor(modelItem => item.LastDonationDate)
                         </td>
                         <td>
-                            @*<i class="fa fa-pencil-square-o" aria-hidden="true" ></i>*@
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+
+                            <a href="@Url.Action("Edit", "Edit")" class="btn btn-primary edit-icon-btn">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </a>
+                            <a href="@Url.Action("Details", "Details")" class="btn btn-primary view-icon-btn">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </a>
+                            <a href="@Url.Action("Delete", "Delete")" class="btn btn-primary delete-icon-btn">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+
                         </td>
                     </tr>
                 }
