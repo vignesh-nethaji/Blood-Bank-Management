@@ -5,7 +5,6 @@
     });
 
     $("#Quantity").bind('keyup mouseup', function () {
-        alert("changed");
     });
 
 });
