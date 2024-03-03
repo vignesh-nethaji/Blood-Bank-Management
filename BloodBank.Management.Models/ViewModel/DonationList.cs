@@ -18,6 +18,7 @@ namespace BloodBank.Management.Models.ViewModel
         public string Recipient { get; set; }
         [Required]
         [Display(Name = "Donation Date")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DonationDate { get; set; }
         [Required]
         [Display(Name = "Quantity")]
