@@ -4,16 +4,33 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
+        <div class="app-top-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="logo-brand">
+                        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                            <img src="~/images/blood-donation.png" alt="Logo" width="32" height="32" class="rounded-circle">
+                            <span class="fs-8 logo-brand-title">Blood Unity</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <i class="fa fa-user-o user-icon" aria-hidden="true" data-bs-toggle="dropdown"></i>
+                    @*<a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link"><i class="fa fa-tachometer" aria-hidden="true"></i> Log off</a>*@
 
+                <ul class="dropdown-menu profile-dropdown">
+                    <li><a class="dropdown-item" href="#"><i class="fa fa-user-o" aria-hidden="true"></i>Profile</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fa fa-cog" aria-hidden="true"></i>Settings</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></li>
+                </ul>
+
+                </div>
+                </div>
+        </div>
         <div id="wrapper">
 
             <aside id="sidebar-wrapper">
-                <div class="sidebar-brand">
-                    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                        <img src="~/images/blood-donation.png" alt="Logo" width="32" height="32" class="rounded-circle">
-                        <span class="fs-8">Blood Unity</span>
-                    </a>
-                </div>
+
                 <ul class="sidebar-nav">
                     <li class="nav-item"><a href="/" class="nav-link" aria-current="page"><i class="fa fa-tachometer" aria-hidden="true"></i> Home</a></li>
                     <li class="nav-item"><a href="/BloodGroups" class="nav-link active" aria-current="page"><i class="fa fa-tachometer" aria-hidden="true"></i> Blood Group</a></li>
@@ -25,8 +42,8 @@
                     @*<li class="nav-item">
                      @Html.ActionLink("Hello " + User.Identity.GetUserName().Split('@')[0] + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
                     </li>*@
-                    <li class="nav-item">
-                        <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link"><i class="fa fa-tachometer" aria-hidden="true"></i> Log off</a></li>
+                    @*<li class="nav-item">
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link"><i class="fa fa-tachometer" aria-hidden="true"></i> Log off</a></li>*@
 
                 </ul>
             </aside>
