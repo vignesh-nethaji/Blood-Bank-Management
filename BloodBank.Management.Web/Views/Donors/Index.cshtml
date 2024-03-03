@@ -4,59 +4,102 @@
     ViewBag.Title = "Index";
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.BloodGroup)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Mobile)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastDonationDate)
-        </th>
-        <th>Actions</th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-           
-            @Html.DisplayFor(modelItem => item.BloodGroup)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mobile)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastDonationDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+<div class="app-content">
 
-</table>
+    <div class="root-description">
+        <span>Home</span> / <span>Donors</span>
+    </div>
+
+
+    <div class="blood-unity-box-card">
+        <div class="blood-unity-box-card-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="blood-unity-box-card-title">
+                        <span class="blood-unity-box-card-header-icon">
+                            <i class="fa fa-table blood-unity-box-card-header-icon" aria-hidden="true"></i>
+                        </span>
+                        <b>Donors</b>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <button class="add-btn">
+                        <span class="blood-unity-box-card-header-icon">
+                            <i class="fa fa-user-plus blood-unity-box-card-header-icon" aria-hidden="true"></i>
+                        </span>
+                        @Html.ActionLink("Add Donor", "Create")
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="blood-unity-box-card-content">
+
+            <table class="table ">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BloodGroup)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mobile)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LastDonationDate)
+                    </th>
+                    <th>Actions</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+
+                            @Html.DisplayFor(modelItem => item.BloodGroup)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mobile)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastDonationDate)
+                        </td>
+                        <td>
+
+                            <a href="@Url.Action("Edit", "Donors", new {id = item.Id})" class="btn btn-primary edit-icon-btn">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </a>
+                            <a href="@Url.Action("Details", "Donors", new {id = item.Id})" class="btn btn-primary view-icon-btn">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </a>
+                            <a href="@Url.Action("Delete", "Donors", new {id = item.Id})" class="btn btn-primary delete-icon-btn">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+    </div>
+
+</div>
+

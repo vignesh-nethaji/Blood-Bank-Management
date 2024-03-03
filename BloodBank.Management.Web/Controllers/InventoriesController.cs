@@ -13,6 +13,10 @@ namespace BloodBank.Management.Web.Controllers
     {
         private BloodCenterContext db = new BloodCenterContext();
 
+        public InventoriesController()
+        {
+            ViewBag.ControllerName = "Inventories";
+        }
         // GET: Inventories
         public ActionResult Index()
         {

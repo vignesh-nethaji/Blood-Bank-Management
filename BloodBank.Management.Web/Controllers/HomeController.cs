@@ -4,6 +4,10 @@ namespace BloodBank.Management.Web.Controllers
 {
     public class HomeController : Controller
     {
+        public HomeController()
+        {
+            ViewBag.ControllerName = "Home";
+        }
         public ActionResult Index()
         {
             return View();

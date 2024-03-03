@@ -17,6 +17,7 @@ namespace BloodBank.Management.Web.Controllers
 
         public ManageController()
         {
+            ViewBag.ControllerName = "Manage";
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)

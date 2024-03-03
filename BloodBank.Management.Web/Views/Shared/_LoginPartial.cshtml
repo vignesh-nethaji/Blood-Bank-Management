@@ -4,28 +4,50 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
+        <div class="app-top-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="logo-brand">
+                        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                            <img src="~/images/blood-donation.png" alt="Logo" width="32" height="32" class="rounded-circle">
+                            <span class="fs-8 logo-brand-title">Blood Unity</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <i class="fa fa-user-o user-icon" aria-hidden="true" data-bs-toggle="dropdown"></i>
+                    @*<a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link"><i class="fa fa-tachometer" aria-hidden="true"></i> Log off</a>*@
 
-        <ul class="nav nav-pills">
-            <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
-            <li class="nav-item"><a href="/BloodGroups" class="nav-link active" aria-current="page">Blood Group</a></li>
-            <li class="nav-item"><a href="/Donors" class="nav-link">Donor</a></li>
-            <li class="nav-item"><a href="/Recipients" class="nav-link">Recipients</a></li>
-            <li class="nav-item"><a href="/Donations" class="nav-link">Donation</a></li>
-            <li class="nav-item"><a href="/Inventories" class="nav-link">Inventory</a></li>
-            <li class="nav-item"><a href="/Hospitals" class="nav-link">Hospital</a></li>
-            <li class="nav-item">
-                @Html.ActionLink("Hello " + User.Identity.GetUserName().Split('@')[0] + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
-            </li>
-            <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Log off</a></li>
+                    <ul class="dropdown-menu profile-dropdown">
+                        <li><a class="dropdown-item" href="#"><i class="fa fa-user-o" aria-hidden="true"></i>Profile</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fa fa-cog" aria-hidden="true"></i>Settings</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></li>
+                        <li>@*<a href="javascript:document.getElementById('logoutForm').submit()" class="dropdown-item"><i class="fa fa-sign-out" aria-hidden="true"></i> Log off</a>*@</li>
 
-        </ul>
 
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div id="wrapper">
+
+            <aside id="sidebar-wrapper">
+
+                <ul class="sidebar-nav">
+                    <li id="Home-menu" class="nav-item"><a href="/Home/Index" class="nav-link" aria-current="page"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+                    <li id="BloodGroups-menu" class="nav-item"><a href="/BloodGroups/Index" class="nav-link" aria-current="page"><i class="fa fa-tint" aria-hidden="true"></i> Blood Group</a></li>
+                    <li id="Hospitals-menu" class="nav-item"><a href="/Hospitals/Index" class="nav-link"><i class="fa fa-hospital-o" aria-hidden="true"></i> Hospital</a></li>
+                    <li id="Donors-menu" class="nav-item"><a href="/Donors/Index" class="nav-link"><i class="fa fa-users" aria-hidden="true"></i> Donor</a></li>
+                    <li id="Recipients-menu" class="nav-item"><a href="/Recipients/Index" class="nav-link"><i class="fa fa-user-o" aria-hidden="true"></i> Recipients</a></li>
+                    <li id="Inventories-menu" class="nav-item"><a href="/Inventories/Index" class="nav-link"><i class="fa fa-stack-exchange" aria-hidden="true"></i> Inventory</a></li>
+                    <li id="Donations-menu" class="nav-item"><a href="/Donations/Index" class="nav-link"><i class="fa fa-money" aria-hidden="true"></i> Donation</a></li>
+                </ul>
+            </aside>
+        </div>
     }
 }
 else
 {
-    <ul class="nav nav-pills">
-        <li class="nav-item">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</li>
-        <li class="nav-item">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
-    </ul>
+
 }

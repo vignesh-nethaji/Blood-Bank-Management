@@ -4,34 +4,75 @@
     ViewBag.Title = "Index";
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>Actions</th>
-    </tr>
+<div class="app-content">
+    <div class="root-description">
+        <span>Home</span> / <span>Blood Groups</span>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    <div class="blood-unity-box-card">
+        <div class="blood-unity-box-card-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="blood-unity-box-card-title">
+                        <span class="blood-unity-box-card-header-icon">
+                            <i class="fa fa-table blood-unity-box-card-header-icon" aria-hidden="true"></i>
+                        </span>
+                        <b>Blood Groups</b>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <button class="add-btn">
+                        <span class="blood-unity-box-card-header-icon">
+                            <i class="fa fa-user-plus blood-unity-box-card-header-icon" aria-hidden="true"></i>
+                        </span>
+                        @Html.ActionLink("Add Blood Groups", "Create")
+                    </button>
+                </div>
+            </div>
 
-</table>
+        </div>
+        <div class="blood-unity-box-card-content">
+
+            <table class="table ">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>Actions</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+
+                            <a href="@Url.Action("Edit", "BloodGroups", new {id = item.Id})" class="btn btn-primary edit-icon-btn">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </a>
+                            <a href="@Url.Action("Details", "BloodGroups", new {id = item.Id})" class="btn btn-primary view-icon-btn">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </a>
+                            <a href="@Url.Action("Delete", "BloodGroups", new {id = item.Id})" class="btn btn-primary delete-icon-btn">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+    </div>
+
+</div>
+

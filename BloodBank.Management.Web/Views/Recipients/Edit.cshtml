@@ -4,78 +4,103 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<div class="app-content">
+    <div class="root-description">
+        <span>Home</span> / <span>Recipient</span>  / <span>Edit</span>
+    </div>
 
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Recipient</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.BloodGroupId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.BloodGroupId, new SelectList(ViewBag.BloodGroups, "Id", "Name", Model?.BloodGroupId == null ? 0 : Model.BloodGroupId), new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.BloodGroupId, "", new { @class = "text-danger" })
+    <div class="blood-unity-box-card">
+        <div class="blood-unity-box-card-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="blood-unity-box-card-title">
+                        <span class="blood-unity-box-card-header-icon">
+                            <i class="fa fa-user-plus blood-unity-box-card-header-icon" aria-hidden="true"></i>
+                        </span>
+                        <b>Edit</b>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <button class="add-btn">
+                        <span class="blood-unity-box-card-header-icon">
+                            <i class="fa fa-arrow-left blood-unity-box-card-header-icon" aria-hidden="true"></i>
+                        </span>
+                        @Html.ActionLink("Back", "Index", "Recipients")
+                    </button>
+                </div>
             </div>
+
         </div>
+        <div class="blood-unity-box-card-content">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.HospitalId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.HospitalId, new SelectList(ViewBag.Hospitals, "Id", "Name", Model?.BloodGroupId == null ? 0 : Model.HospitalId), new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.HospitalId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.BloodGroupId, htmlAttributes: new { @class = "control-label col-md-2 mb-1" })
+                    <div class="col-md-12">
+                        @Html.DropDownListFor(model => model.BloodGroupId, new SelectList(ViewBag.BloodGroups, "Id", "Name", Model?.BloodGroupId == null ? 0 : Model.BloodGroupId), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.BloodGroupId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.HospitalId, htmlAttributes: new { @class = "control-label col-md-2 mb-1" })
+                    <div class="col-md-12">
+                        @Html.DropDownListFor(model => model.HospitalId, new SelectList(ViewBag.Hospitals, "Id", "Name", Model?.BloodGroupId == null ? 0 : Model.HospitalId), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.HospitalId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2 mb-1" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "control-label col-md-2 mb-1" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2 mb-1" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2 mb-1" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="mt-3 col-sm-12 text-right">
+                        <button type="submit" class="btn btn-default save-btn">
+                            <i class="fa fa-plus pr-5" aria-hidden="true"></i> Update
+                        </button>
+                    </div>
+                </div>
             </div>
+            }
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
