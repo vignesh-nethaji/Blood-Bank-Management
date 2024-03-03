@@ -14,13 +14,24 @@
 
     <div class="blood-unity-box-card">
         <div class="blood-unity-box-card-header">
-            <span>
-                @*<span class="material-symbols-outlined blood-unity-box-card-header-icon"> group_add</span>*@
-                <span class="blood-unity-box-card-header-icon">
-                    <i class="fa fa-user-plus blood-unity-box-card-header-icon" aria-hidden="true"></i>
-                </span>
-                @Html.ActionLink("Add Donor", "Create")
-            </span>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="blood-unity-box-card-title">
+                        <span class="blood-unity-box-card-header-icon">
+                            <i class="fa fa-user-plus blood-unity-box-card-header-icon" aria-hidden="true"></i>
+                        </span>
+                        <b>Donors</b>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <button class="add-btn">
+                        <span class="blood-unity-box-card-header-icon">
+                            <i class="fa fa-user-plus blood-unity-box-card-header-icon" aria-hidden="true"></i>
+                        </span>
+                        @Html.ActionLink("Add Donor", "Create")
+                    </button>
+                </div>
+            </div>
         </div>
         <div class="blood-unity-box-card-content">
 
