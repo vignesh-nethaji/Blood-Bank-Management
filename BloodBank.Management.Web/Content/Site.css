@@ -165,6 +165,7 @@ padding-left:0px;
     border-radius: 12px;
     padding: 3px 10px;
     color: #dc3545;
+    text-decoration:none;
 }
 .app-top-header {
     height: 50px;
@@ -214,11 +215,17 @@ padding-left:0px;
     border-radius: 15px;
     box-shadow: 2px 3px 6px #dc3545;
 }
-.pr-5{
-    padding-right:5px;
+    .save-btn:hover{
+        color:red;
+    }
+    .pr-5 {
+        padding-right: 5px;
+    }
+.ml-5{
+    margin-left:5px;
 }
-label, .form-control{
-    font-size:12px;
+label, .form-control {
+    font-size: 12px;
 }
 /* ============================== aside menu code start Here ========================  */
 a {

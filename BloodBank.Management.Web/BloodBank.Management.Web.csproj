@@ -210,6 +210,10 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\blood-donation.png" />
+    <Content Include="images\css\font-awesome.css" />
+    <Content Include="images\css\font-awesome.min.css" />
+    <Content Include="images\fonts\fontawesome-webfont.svg" />
+    <Content Include="images\login\login1.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -238,6 +242,11 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="images\fonts\fontawesome-webfont.eot" />
+    <Content Include="images\fonts\fontawesome-webfont.ttf" />
+    <Content Include="images\fonts\fontawesome-webfont.woff" />
+    <Content Include="images\fonts\fontawesome-webfont.woff2" />
+    <Content Include="images\fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Inventory\inventory.create.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

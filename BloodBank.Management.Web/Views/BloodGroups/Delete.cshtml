@@ -4,37 +4,69 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<div class="app-content">
+    <div class="root-description">
+        <span>Home</span> / <span>Blood Group</span>  / <span>Delete Blood Group</span>
+    </div>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>BloodGroup</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <div class="blood-unity-box-card">
+        <div class="blood-unity-box-card-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="blood-unity-box-card-title">
+                        <span class="blood-unity-box-card-header-icon">
+                            <i class="fa fa-user-plus blood-unity-box-card-header-icon" aria-hidden="true"></i>
+                        </span>
+                        <b>Delete Blood Group</b>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <button class="add-btn">
+                        <span class="blood-unity-box-card-header-icon">
+                            <i class="fa fa-arrow-left blood-unity-box-card-header-icon" aria-hidden="true"></i>
+                        </span>
+                        @Html.ActionLink("Back", "Index", "BloodGroups")
+                    </button>
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
         </div>
-    }
+        <div class="blood-unity-box-card-content">
+
+            <div>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        <div class="mt-3 col-sm-12 text-right">
+                            <button type="submit" class="btn btn-default save-btn">
+                                <i class="fa fa-trash pr-5" aria-hidden="true"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 </div>
+

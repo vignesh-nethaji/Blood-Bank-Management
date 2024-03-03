@@ -15,7 +15,7 @@
                 <div class="col-sm-6">
                     <div class="blood-unity-box-card-title">
                         <span class="blood-unity-box-card-header-icon">
-                            <i class="fa fa-user-plus blood-unity-box-card-header-icon" aria-hidden="true"></i>
+                            <i class="fa fa-table blood-unity-box-card-header-icon" aria-hidden="true"></i>
                         </span>
                         <b>Inventories</b>
                     </div>
@@ -60,13 +60,13 @@
                         </td>
                         <td>
 
-                            <a href="@Url.Action("Edit", "Edit")" class="btn btn-primary edit-icon-btn">
+                            <a href="@Url.Action("Edit", "Hospitals", new {id = item.Id})" class="btn btn-primary edit-icon-btn">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </a>
-                            <a href="@Url.Action("Details", "Details")" class="btn btn-primary view-icon-btn">
+                            <a href="@Url.Action("Details", "Hospitals", new {id = item.Id})" class="btn btn-primary view-icon-btn">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                             </a>
-                            <a href="@Url.Action("Delete", "Delete")" class="btn btn-primary delete-icon-btn">
+                            <a href="@Url.Action("Delete", "Hospitals", new {id = item.Id})" class="btn btn-primary delete-icon-btn">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </a>
 
