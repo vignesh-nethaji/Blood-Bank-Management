@@ -69,8 +69,20 @@ namespace BloodBank.Management.Web.Controllers
         // GET: Donations/Create
         public ActionResult Create()
         {
-            ViewBag.Donors = db.Donor.ToList();
-            ViewBag.Recipients = db.Recipient.ToList();
+
+
+            var donors = db.Donor.ToList();
+            //donors.Insert(0, new Donor());
+            ViewBag.Donors = donors;
+
+            var recipients = new List<Recipient>();
+            foreach (var item in db.Recipient.ToList())
+            {
+                item.Name = item.Name + " - (" + db.BloodGroup.FirstOrDefault(o => o.Id == item.BloodGroupId).Name +")";
+                recipients.Add(item);
+            }
+            ViewBag.Recipients = recipients;
+            //ViewBag.QuantityError = "9";
             return View();
         }
 
@@ -81,6 +93,15 @@ namespace BloodBank.Management.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,DonorId,RecipientId,DonationDate,Quantity")] Donation donation)
         {
+            var errors = new List<string>();
+            if (donation.DonorId <= 0)
+            {
+                errors.Add("Donor is mandatory");
+            }
+            if (donation.RecipientId <= 0)
+            {
+
+            }
             if (ModelState.IsValid)
             {
                 db.Donation.Add(donation);
@@ -159,6 +180,16 @@ namespace BloodBank.Management.Web.Controllers
             db.Donation.Remove(donation);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public JsonResult GetBloodGroupInfo(int donorId = 0)
+        {
+            var donor = db.Donor.FirstOrDefault(o => o.Id == donorId);
+            var inventory = db.Inventory.Where(o => o.DonorId == donorId && o.Status == false);
+            var bloodGroup = db.BloodGroup.FirstOrDefault(o => o.Id == donor.BloodGroupId);
+            var message = "<b>" + donor.Name + "</b> is associated to <i>" + bloodGroup.Name + "</i> blood group. Currently available quantity is <b>" + inventory.Count()+"</b>";
+            return Json(message, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)
