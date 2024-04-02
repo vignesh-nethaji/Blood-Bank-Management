@@ -3,7 +3,7 @@ namespace BloodBank.Management.DataAccess.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddedDatabaseDbset : DbMigration
+    public partial class test : DbMigration
     {
         public override void Up()
         {
@@ -35,10 +35,10 @@ namespace BloodBank.Management.DataAccess.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         BloodGroupId = c.Int(nullable: false),
-                        Name = c.String(),
-                        Mobile = c.String(),
+                        Name = c.String(nullable: false),
+                        Mobile = c.String(nullable: false),
                         Email = c.String(),
-                        Address = c.String(),
+                        Address = c.String(nullable: false),
                         LastDonationDate = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
@@ -48,9 +48,9 @@ namespace BloodBank.Management.DataAccess.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Location = c.String(),
-                        Mobile = c.String(),
+                        Name = c.String(nullable: false),
+                        Location = c.String(nullable: false),
+                        Mobile = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -61,6 +61,7 @@ namespace BloodBank.Management.DataAccess.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         DonorId = c.Int(nullable: false),
                         BloodGroupId = c.Int(nullable: false),
+                        DonationId = c.Int(nullable: false),
                         ExpiryDate = c.DateTime(nullable: false),
                         Status = c.Boolean(nullable: false),
                     })
@@ -73,9 +74,9 @@ namespace BloodBank.Management.DataAccess.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         BloodGroupId = c.Int(nullable: false),
                         HospitalId = c.Int(nullable: false),
-                        Name = c.String(),
-                        Mobile = c.String(),
-                        Email = c.String(),
+                        Name = c.String(nullable: false),
+                        Mobile = c.String(nullable: false),
+                        Email = c.String(nullable: false),
                         Address = c.String(),
                     })
                 .PrimaryKey(t => t.Id);

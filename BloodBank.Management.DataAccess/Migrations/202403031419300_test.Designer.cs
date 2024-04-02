@@ -7,13 +7,13 @@ namespace BloodBank.Management.DataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class UpdatedInventory : IMigrationMetadata
+    public sealed partial class test : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdatedInventory));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(test));
         
         string IMigrationMetadata.Id
         {
-            get { return "202402271732187_Updated-Inventory"; }
+            get { return "202403031419300_test"; }
         }
         
         string IMigrationMetadata.Source
