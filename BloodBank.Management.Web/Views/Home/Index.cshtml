@@ -9,9 +9,8 @@
                 <div class="card-header  app-custom-card-dashboard">
                     Donors
                 </div>
-                <div class="card-body" >
-                    @*<h5 class="card-title">Active Donors</h5>*@
-                    <h1 style="margin-left: 35%;"><span class="badge bg-primary">12</span></h1>
+                <div class="card-body">
+                    <h1 style="margin-left: 35%;"><span class="badge bg-primary">@ViewBag.Donors</span></h1>
                 </div>
             </div>
         </div>
@@ -21,8 +20,7 @@
                     Recipients
                 </div>
                 <div class="card-body">
-                    @*<h5 class="card-title">Active Donors</h5>*@
-                    <h1 style="margin-left: 35%;"><span class="badge bg-primary">13</span></h1>
+                    <h1 style="margin-left: 35%;"><span class="badge bg-primary">@ViewBag.Recipients</span></h1>
                 </div>
             </div>
         </div>
@@ -32,8 +30,7 @@
                     Hospitals
                 </div>
                 <div class="card-body">
-                    @*<h5 class="card-title">Active Donors</h5>*@
-                    <h1 style="margin-left: 35%;"><span class="badge bg-primary">15</span></h1>
+                    <h1 style="margin-left: 35%;"><span class="badge bg-primary">@ViewBag.Hospitals</span></h1>
                 </div>
             </div>
         </div>
@@ -43,10 +40,23 @@
                     Donations
                 </div>
                 <div class="card-body">
-                    @*<h5 class="card-title">Total Donations</h5>*@
-                    <h1 style="margin-left: 35%;"><span class="badge bg-primary">16</span></h1>
+                    <h1 style="margin-left: 35%;"><span class="badge bg-primary">@ViewBag.Donations</span></h1>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <div class="row">
+        <div class="col-6">
+            <canvas id="inventoryChart"></canvas>
+        </div>
+        <div class="col-6">
+            <canvas id="donationChart"></canvas>
+        </div>
+    </div>
+
+    <script src="~/Scripts/chart.min.js"></script>
+    @section Scripts {
+        @Scripts.Render("~/bundles/Home")
+    }
+   

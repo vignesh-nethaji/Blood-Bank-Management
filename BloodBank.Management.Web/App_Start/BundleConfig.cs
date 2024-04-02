@@ -32,6 +32,12 @@ namespace BloodBank.Management.Web
                         "~/Scripts/Inventory/inventory.create.js"));
             bundles.Add(new ScriptBundle("~/bundles/Donation").Include(
                        "~/Scripts/Donation/donation.create.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/chart").Include(
+                       "~/Scripts/chart.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Home").Include("~/Scripts/Home/home.index.js"));
+
         }
     }
 }
