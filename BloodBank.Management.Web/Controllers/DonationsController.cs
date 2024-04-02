@@ -73,21 +73,12 @@ namespace BloodBank.Management.Web.Controllers
         // GET: Donations/Create
         public ActionResult Create()
         {
-
-
-            var donors = db.Donor.ToList();
-            //donors.Insert(0, new Donor());
-            ViewBag.Donors = donors;
-
-            var recipients = new List<Recipient>();
-            foreach (var item in db.Recipient.ToList())
+            CreatePreLoadData();
+            Donation donation = new Donation
             {
-                item.Name = item.Name + " - (" + db.BloodGroup.FirstOrDefault(o => o.Id == item.BloodGroupId).Name +")";
-                recipients.Add(item);
-            }
-            ViewBag.Recipients = recipients;
-            //ViewBag.QuantityError = "9";
-            return View();
+                DonationDate = System.DateTime.Today
+            };
+            return View(donation);
         }
 
         // POST: Donations/Create
@@ -97,20 +88,51 @@ namespace BloodBank.Management.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,DonorId,RecipientId,DonationDate,Quantity")] Donation donation)
         {
-            var errors = new List<string>();
             if (donation.DonorId <= 0)
             {
-                errors.Add("Donor is mandatory");
+                ModelState.AddModelError("DonorId", "Donor is mandatory");
             }
             if (donation.RecipientId <= 0)
             {
+                ModelState.AddModelError("RecipientId", "Recipient is mandatory");
+            }
 
+            var donorBloodGroup = db.Donor.FirstOrDefault(o => o.Id == donation.DonorId).BloodGroupId;
+            var recipientBloodGroup = db.Recipient.FirstOrDefault(o => o.Id == donation.RecipientId).BloodGroupId;
+
+            if (donorBloodGroup != recipientBloodGroup)
+            {
+                ModelState.AddModelError("DonorId", "Donor and Recipient should be same blood group");
+            }
+            var inventories = db.Inventory.Where(o => o.DonorId == donation.DonorId && !o.Status);
+            if (donation.Quantity <= 0)
+            {
+                ModelState.AddModelError("Quantity", "Quantity should not be less than 1.");
+            }
+            else
+            {
+                if (inventories.Count() < donation.Quantity)
+                {
+                    ModelState.AddModelError("Quantity", "Currently inventory had only " + inventories.Count() + " quantity of blood. so please select quantity less than or equal to " + inventories.Count());
+                }
             }
             if (ModelState.IsValid)
             {
+
                 db.Donation.Add(donation);
                 db.SaveChanges();
+                var selectedInventories = inventories.Take(donation.Quantity);
+                foreach (var item in selectedInventories)
+                {
+                    item.DonationId = donation.Id;
+                    item.Status = true;
+                }
+                db.SaveChanges();
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                CreatePreLoadData();
             }
 
             return View(donation);
@@ -192,8 +214,27 @@ namespace BloodBank.Management.Web.Controllers
             var donor = db.Donor.FirstOrDefault(o => o.Id == donorId);
             var inventory = db.Inventory.Where(o => o.DonorId == donorId && o.Status == false);
             var bloodGroup = db.BloodGroup.FirstOrDefault(o => o.Id == donor.BloodGroupId);
-            var message = "<b>" + donor.Name + "</b> is associated to <i>" + bloodGroup.Name + "</i> blood group. Currently available quantity is <b>" + inventory.Count()+"</b>";
-            return Json(message, JsonRequestBehavior.AllowGet);
+
+            return Json(new { donor = donor.Name, bloodGroup = bloodGroup.Name, count = inventory.Count() }, JsonRequestBehavior.AllowGet);
+        }
+
+        private void CreatePreLoadData()
+        {
+            var donors = new List<Donor>();
+            foreach (var item in db.Donor.ToList())
+            {
+                item.Name = item.Name + " - (" + db.BloodGroup.FirstOrDefault(o => o.Id == item.BloodGroupId).Name + ")";
+                donors.Add(item);
+            }
+            ViewBag.Donors = donors;
+
+            var recipients = new List<Recipient>();
+            foreach (var item in db.Recipient.ToList())
+            {
+                item.Name = item.Name + " - (" + db.BloodGroup.FirstOrDefault(o => o.Id == item.BloodGroupId).Name + ")";
+                recipients.Add(item);
+            }
+            ViewBag.Recipients = recipients;
         }
 
         protected override void Dispose(bool disposing)
