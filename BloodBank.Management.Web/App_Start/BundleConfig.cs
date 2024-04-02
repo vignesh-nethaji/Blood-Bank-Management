@@ -37,6 +37,7 @@ namespace BloodBank.Management.Web
                        "~/Scripts/chart.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/Home").Include("~/Scripts/Home/home.index.js"));
+            /// Added Comments in the file
 
         }
     }
