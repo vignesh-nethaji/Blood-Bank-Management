@@ -248,6 +248,8 @@
     <Content Include="images\fonts\fontawesome-webfont.woff2" />
     <Content Include="images\fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\chart.js" />
+    <Content Include="Scripts\chart.min.js" />
     <Content Include="Scripts\Donation\donation.create.js" />
     <Content Include="Scripts\Inventory\inventory.create.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

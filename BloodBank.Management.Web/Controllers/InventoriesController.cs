@@ -38,7 +38,7 @@ namespace BloodBank.Management.Web.Controllers
                     ExpiryDate = item.ExpiryDate,
                     Status = item.Status
                 };
-                if (item.DonationId > 0)
+                if (item.DonationId > 0 && donations.Count() > 0 && recipients.Count() > 0)
                 {
                     var recipientId = donations.FirstOrDefault(o => o.Id == item.DonationId).RecipientId;
                     var recipientName = recipients.FirstOrDefault(o => o.Id == recipientId).Name;
@@ -72,7 +72,7 @@ namespace BloodBank.Management.Web.Controllers
                 ExpiryDate = inventory.ExpiryDate,
                 Status = inventory.Status
             };
-            if (inventory.DonationId > 0)
+            if (inventory.DonationId > 0 && donations.Count() > 0 && recipients.Count() > 0)
             {
                 var recipientId = donations.FirstOrDefault(o => o.Id == inventory.DonationId).RecipientId;
                 var recipientName = recipients.FirstOrDefault(o => o.Id == recipientId).Name;
@@ -164,7 +164,7 @@ namespace BloodBank.Management.Web.Controllers
                 ExpiryDate = inventory.ExpiryDate,
                 Status = inventory.Status
             };
-            if (inventory.DonationId > 0)
+            if (inventory.DonationId > 0 && donations.Count() > 0 && recipients.Count() > 0)
             {
                 var recipientId = donations.FirstOrDefault(o => o.Id == inventory.DonationId).RecipientId;
                 var recipientName = recipients.FirstOrDefault(o => o.Id == recipientId).Name;
